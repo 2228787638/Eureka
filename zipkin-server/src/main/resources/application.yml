@@ -11,8 +11,20 @@ spring:
     name: zipkin-server
   main:
     allow-bean-definition-overriding: true
+
 management:
   metrics:
     web:
       server:
         auto-time-requests: false
+zipkin:
+  storage:
+    type: elasticsearch
+    StorageComponent: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch
+      max-requests: 30
+      index: zipkin
+      index-shards: 3
+      index-replicas: 1
+      hosts: localhost:9200
